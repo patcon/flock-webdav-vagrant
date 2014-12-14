@@ -20,3 +20,12 @@ testing, I recommend using [ngrok](https://ngrok.com/download):
 The system username is taken from the login name of the session you're
 using. This will hopefully be provisioned as part of the VM in the
 future, so that ngrok exposure will happen automatically.
+
+## Configuration
+
+Here are locations where configuration should be noted and changed
+accordingly:
+
+- https://github.com/patcon/flock-webdav-vagrant/blob/master/Vagrantfile#L26
+- https://github.com/patcon/flock-webdav-vagrant/blob/master/Vagrantfile#L79
+- https://github.com/patcon/flock-webdav-vagrant/blob/master/Vagrantfile#L84-L85
