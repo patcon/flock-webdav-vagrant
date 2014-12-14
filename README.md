@@ -1,3 +1,10 @@
+# Flock WebDAV Testing Environment
+
+This project aims to create a webdav environment that can be used for
+testing Flock on a self-hosted server. In the future, it may aspire to
+help users easily spin up a self-hosted server for their own personal
+usage.
+
 ## Requirements
 
 - [Install](https://downloads.chef.io/chef-dk/) ChefDK
