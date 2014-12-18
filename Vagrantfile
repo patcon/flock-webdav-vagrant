@@ -67,6 +67,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # View the documentation for the provider you're using for more
   # information on available options.
 
+  # Will be used to create a unique subdomain using ngrok:
+  # Example: https://flock-test-myusername.ngrok.com
+  subdomain = "flock-test-#{Etc.getlogin}"
+
   config.vm.provision "chef_solo" do |chef|
     chef.add_recipe "apt"
     chef.add_recipe "postgresql::server"
@@ -74,9 +78,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #chef.add_recipe "darwin-calendar-server::patch"
     chef.add_recipe "darwin-calendar-server::configure"
     chef.add_recipe "darwin-calendar-server::install"
+    chef.add_recipe "ngrok"
     chef.json = {
       'darwin' => {
-        'hostname' => "flock-test-#{Etc.getlogin}.ngrok.com",
+        'hostname' => "#{subdomain}.ngrok.com",
         'max_requests' => '10',
         'directory_service' => 'twistedcaldav.directory.xmlfile.XMLDirectoryService',
         'webdav_users' => [
@@ -89,6 +94,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       'memcached' => {
         'host' => '127.0.0.1',
         'port' => '11211',
+      },
+      'ngrok' => {
+        'auth_token' => 'nKgwjggnGnuiIaWTprg9',
+        'tunnels' => {
+          "#{subdomain}" => {
+            'proto' => {
+              'http' => '80',
+            },
+          },
+        },
       },
       'postgres-accounts' => {
         'host' => '',
