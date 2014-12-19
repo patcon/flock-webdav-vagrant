@@ -16,6 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
 
   config.vm.network "forwarded_port", guest: 80, host: 8008 # webdav
+  config.vm.network "forwarded_port", guest: 4040, host: 4040 # ngrok admin
 
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box
@@ -55,6 +56,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       },
       'ngrok' => {
         'auth_token' => 'nKgwjggnGnuiIaWTprg9',
+        # Make web interface available on host
+        'inspect_addr' => '0.0.0.0:4040',
         'tunnels' => {
           "#{subdomain}" => {
             'proto' => {

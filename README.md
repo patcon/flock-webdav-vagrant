@@ -26,6 +26,11 @@ at:
 
 It is also exposed locally on port `8008`.
 
+You may inspect requests to the VM's WebDAV server via ngrok's web
+interface:
+
+    http://127.0.0.1:4040
+
 The system username is taken from the login name of the session you're
 using (ie. your home directory name on linux). This will hopefully be
 provisioned as part of the VM in the future, so that ngrok exposure will
